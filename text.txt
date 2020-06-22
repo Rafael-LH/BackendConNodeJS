@@ -2,3 +2,7 @@
 El punto principal es que Node.js fue construido en motor V8, y de esa manera poder tener un entorno de desarrollo
 para usar javascript del lado del servidor.
 
+Duplex y Transforms streams
+  Duplex: implementa los métodos write y read a la vez.
+  Transform: es similar a Duplex pero con una sintaxis más corta.
+
