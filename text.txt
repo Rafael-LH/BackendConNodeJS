@@ -6,3 +6,7 @@ Duplex y Transforms streams
   Duplex: implementa los métodos write y read a la vez.
   Transform: es similar a Duplex pero con una sintaxis más corta.
 
+Sistema operativo y sistema de archivos
+  os. Sirve para consultar y manejar los recursos del sistema operativo.
+  fs. Sirve para administrar (copiar, crear, borrar etc.) archivos y directorios.
+
