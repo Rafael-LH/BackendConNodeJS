@@ -10,3 +10,10 @@ Sistema operativo y sistema de archivos
   os. Sirve para consultar y manejar los recursos del sistema operativo.
   fs. Sirve para administrar (copiar, crear, borrar etc.) archivos y directorios.
 
+Cluster
+  Clustering en NodeJS es una alternativa interesante para garantizar la atención de peticiones concurrentes
+  y sacar el máximo provecho al hardware (cantidad de núcleos) del servidor. Otra alternativa sería ejecutar 
+  las aplicaciones con PM2 o algún otro process manager, que también cuentan con opciones de clusterización o forking de procesos.
+
+
+
