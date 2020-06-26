@@ -10,6 +10,16 @@ class MoviesController {
     const data = await store.getMovie(id);
     return data
   }
+
+  async createMovie(data) {
+    await store.createMovie(data);
+    return data;
+  }
+
+  async updateMovie(id) {
+    await store.updateMovie(id);
+    return 'Updated'
+  }
 }
 
 module.exports = new MoviesController();
