@@ -1,5 +1,5 @@
 const express = require('express');
-const moviesMock = require('../utils/mocks/movies.json');
+const controller = require('../controller/moviesController');
 
 function moviesApi(app) {
   const router = express.Router();
@@ -7,14 +7,62 @@ function moviesApi(app) {
 
   router.get('/', async (req, res, next) => {
     try {
-      const movie = await Promise.resolve(moviesMock);
+      const movie = await controller.getMovies();
       res.status(200).send({
-        data: movie,
+        result: movie,
         message: 'Get all movies'
       })
     } catch (err) {
       next(err);
     }
   })
+
+  // router.get('/:id', async (req, res, next) => {
+  //   try {
+  //     const movie = await Promise.resolve(moviesMock[0]);
+  //     res.status(200).send({
+  //       result: movie,
+  //       message: 'Get movie'
+  //     })
+  //   } catch (err) {
+  //     next(err);
+  //   }
+  // })
+
+  // router.post('/', async (req, res, next) => {
+  //   try {
+  //     const createdMovieId = await Promise.resolve(moviesMock[0].id);
+  //     res.status(201).send({
+  //       result: createdMovieId,
+  //       message: 'Created movie'
+  //     })
+  //   } catch (err) {
+  //     next(err);
+  //   }
+  // })
+
+  // router.patch('/:id', async (req, res, next) => {
+  //   try {
+  //     const updatedMovieId = await Promise.resolve(moviesMock[0].id);
+  //     res.status(200).send({
+  //       result: updatedMovieId,
+  //       message: 'Updated movie'
+  //     })
+  //   } catch (err) {
+  //     next(err)
+  //   }
+  // })
+
+  // router.delete('/:id', async (req, res, next) => {
+  //   try {
+  //     const deleteMovieId = await Promise.resolve(moviesMock[0].id);
+  //     res.status(200).send({
+  //       result: deleteMovieId,
+  //       message: 'Deleted movie'
+  //     })
+  //   } catch (err) {
+  //     next(err);
+  //   }
+  // })
 }
 module.exports = moviesApi;
