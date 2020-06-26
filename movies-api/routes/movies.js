@@ -17,17 +17,17 @@ function moviesApi(app) {
     }
   })
 
-  // router.get('/:id', async (req, res, next) => {
-  //   try {
-  //     const movie = await Promise.resolve(moviesMock[0]);
-  //     res.status(200).send({
-  //       result: movie,
-  //       message: 'Get movie'
-  //     })
-  //   } catch (err) {
-  //     next(err);
-  //   }
-  // })
+  router.get('/:id', async (req, res, next) => {
+    try {
+      const movie = await controller.getMovie(req.params.id);
+      res.status(200).send({
+        result: movie,
+        message: 'Get movie'
+      })
+    } catch (err) {
+      next(err);
+    }
+  })
 
   // router.post('/', async (req, res, next) => {
   //   try {

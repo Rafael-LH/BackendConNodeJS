@@ -1,3 +1,6 @@
+/**
+ * aqui estara todas nuestra conexiones con al base de datos, en algunas convenciones lo llaman store
+ */
 const moviesMock = require('../utils/mocks/movies.json');
 
 class MoviesServices {
@@ -6,9 +9,9 @@ class MoviesServices {
     return movies || [];
   }
 
-  async getMovie() {
-    const movie = await Promise.resolve(moviesMock[0])
-    return movie || {};
+  async getMovie(id) {
+    const data = await moviesMock.find(item => item.id === id);
+    return data || {};
   }
 
   async createMovie() {
