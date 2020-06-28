@@ -1,5 +1,4 @@
-// , ObjectId
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 const { dbUser, dbPassWord, dbHost, dbName, port } = require('../config');
 
 // lo que hace esta fucion es en caso de que tenga mi cadena caracteres especiales no tenga problemas a la hora de hacer la conexion
@@ -33,6 +32,34 @@ class MongoLib {
     }
     // si existe la conexion la retorno aqui si no la creo dentro del if
     return MongoLib.connection;
+  }
+
+  async getAll(collection, query) {
+    const db = await this.connect();
+    return await db.collection(collection).find(query).toArray();
+  }
+  async get(collection, id) {
+    const db = await this.connect();
+    return await db.collection(collection).findOne({ _id: ObjectId(id) });
+  }
+  async create(collection, data) {
+    const db = await this.connect();
+    const result = await db.collection(collection).insertOne(data);
+    return result || db.insertedId;
+  }
+  async update(collection, id, data) {
+    const db = await this.connect();
+    const result = await db.collection(collection).updateOne(
+      { _id: ObjectId(id) },
+      { $set: data },
+      { upsert: true }
+    );
+    return result.upsertedId || id;
+  }
+  async delete(collection, id) {
+    const db = await this.connect();
+    const result = await db.collection(collection).deleteOne({ _id: ObjectId(id) });
+    return result || id
   }
 }
 module.exports = MongoLib;
