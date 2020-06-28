@@ -1,32 +1,38 @@
 /**
  * aqui estara todas nuestra conexiones con al base de datos, en algunas convenciones lo llaman store
  */
-const moviesMock = require('../utils/mocks/movies.json');
+const MongoLib = require('../lib/mongo');
 
 class MoviesServices {
-  async getMovies() {
-    const movies = await Promise.resolve(moviesMock)
+  constructor() {
+    this.collection = 'movies';
+    this.mongoDB = new MongoLib();
+  }
+  async getMovies({ tags } = {}) {
+    const query = tags && { tags: { $in: tags } };
+    const movies = await this.mongoDB.getAll(this.collection, query)
     return movies || [];
   }
 
-  async getMovie(id) {
-    const data = await moviesMock.find(item => item.id === id);
+  async getMovie(movieId) {
+    const data = await this.mongoDB.get(this.collection, movieId)
     return data || {};
   }
 
-  async createMovie() {
-    const movie = await Promise.resolve(moviesMock[0])
-    return movie
+  async createMovie(movie) {
+    const data = await this.mongoDB.create(this.collection, movie)
+    return data;
   }
 
-  async updateMovie() {
-    const movie = await Promise.resolve(moviesMock[0])
-    return movie
+  // en caso de que no venga nada lo inicializo como un objeto vacio
+  async updateMovie(movieId, movie = {}) {
+    const result = await this.mongoDB.update(this.collection, movieId, movie)
+    return result;
   }
 
-  async deleteMovie() {
-    const movie = await Promise.resolve(moviesMock[0])
-    return movie
+  async deleteMovie(movieId) {
+    const result = await this.mongoDB.delete(this.collection, movieId)
+    return result;
   }
 }
 
