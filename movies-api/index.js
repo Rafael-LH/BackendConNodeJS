@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const { port } = require('./config/index');
+const { logErrors, errorHandle } = require('./utils/middleware/errorHandlers')
 
 const app = express();
 
@@ -24,6 +25,15 @@ app.get('/', (req, res) => {
 const router = require('./routes/movies')
 router(app);
 
+app.use(logErrors);
+app.use(errorHandle);
+
+
+// server listen
+app.listen(port, () => {
+  console.log(`La aplicacion esta corriendo en http://localhost:${port}`);
+})
+
 //change
 // app.get('/:year', (req, res) => {
 //   const { year } = req.params
@@ -33,8 +43,3 @@ router(app);
 //     res.status(200).send('El año no es bisiesto');
 //   }
 // })
-
-// server listen
-app.listen(port, () => {
-  console.log(`La aplicacion esta corriendo en http://localhost:${port}`);
-})

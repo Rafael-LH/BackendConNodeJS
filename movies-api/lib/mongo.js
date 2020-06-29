@@ -48,8 +48,6 @@ class MongoLib {
     return result || db.insertedId;
   }
   async update(collection, id, data) {
-    console.log(data);
-
     const db = await this.connect();
     const result = await db.collection(collection).updateOne(
       { _id: ObjectId(id) },

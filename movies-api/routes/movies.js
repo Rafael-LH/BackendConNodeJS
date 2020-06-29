@@ -9,6 +9,9 @@ function moviesApi(app) {
     try {
       const { tags } = req.query;
       const movie = await services.getMovies(tags);
+
+      // throw new Error('Error geting movies');
+
       res.status(200).send({
         result: movie,
         message: 'Get all movies'

@@ -1,0 +1,16 @@
+Un middleware es una pieza de software que esta en medio de otras dos
+se le conoce como software glue (pegamento de software) y lo que hace es conectar otras piezas 
+de software a nuestro software.
+
+Por ejemplo: tenemos un pueblo y del otro lado tenemos un recurso natual que es el agua 
+si queremos que el agua llegue a la poblacion debemos de insertar en medio (un middleware) un sistema de 
+tuberias para que de esta menara el agua llegue a nuestra poblacion, pero podemos seguir agregando middleware 
+por ejmplo podemos agregar un middleware para purificar el agua o tambien agregar un middleware que se encargue de 
+contar el uso del agua.
+
+Los middlewares son una capa de complejidad de código que se agrega en el intermedio de otras dos capas. 
+Se le conocer como el pegamento de código, ya que se encarga de unir dos capas.
+El objetivo principal de los middlewares es corroborar que los datos que están siendo enviado de 
+una capa hacia otra si cumplan los parámetros establecido o sean los datos correctos, de ser así, 
+este middleware los dejara pasar de no ser así se ejecutara la acción que le indiquemos 
+en la mayoría de los casos suele ser un error.
