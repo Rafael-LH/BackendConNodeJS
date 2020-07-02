@@ -2,7 +2,9 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const { port } = require('./config/index');
-const { logErrors, errorHandle } = require('./utils/middleware/errorHandlers')
+const { logErrors, errorHandler, wrapErrors } = require('./utils/middleware/errorHandlers')
+
+const notFoundHandler = require('./utils/middleware/notFoundHandler')
 
 const app = express();
 
@@ -25,8 +27,13 @@ app.get('/', (req, res) => {
 const router = require('./routes/movies')
 router(app);
 
+//catch 404 not found
+app.use(notFoundHandler);
+
+// Errors middleware
 app.use(logErrors);
-app.use(errorHandle);
+app.use(wrapErrors)
+app.use(errorHandler);
 
 
 // server listen
